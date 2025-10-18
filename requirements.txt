@@ -1,0 +1,38 @@
+
+---
+
+## Objective
+Predict the `Survived` column (0 = Did not survive, 1 = Survived) using passenger details.
+
+---
+
+## Tools & Libraries
+- Python 3
+- Pandas, NumPy
+- Matplotlib, Seaborn
+- Scikit-learn
+
+---
+
+## Next Steps
+- Perform data cleaning and preprocessing  
+- Explore feature engineering ideas  
+- Train multiple classification models  
+- Evaluate model performance using accuracy, F1-score, and ROC-AUC  
+- Submit predictions to Kaggle and track leaderboard ranking  
+
+---
+
+## Dataset
+The dataset is available from the official Kaggle competition:  
+👉 [Titanic: Machine Learning from Disaster](https://www.kaggle.com/competitions/titanic)
+
+---
+
+## Author
+Fahad Khatri  
+
+
+---
+
+*This project is under active development — model implementation and performance metrics will be added soon.*
