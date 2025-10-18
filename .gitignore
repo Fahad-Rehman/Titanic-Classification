@@ -1,0 +1,54 @@
+# ===============================
+# Python
+# ===============================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+*.pickle
+*.log
+
+# ===============================
+# Jupyter Notebook
+# ===============================
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# ===============================
+# Environment / Dependency Files
+# ===============================
+.env
+.venv/
+venv/
+env/
+ENV/
+*.egg-info/
+*.egg
+
+# ===============================
+# Data Files
+# ===============================
+*.csv
+*.tsv
+*.xls
+*.xlsx
+*.json
+*.zip
+
+# ===============================
+# Model / Output Files
+# ===============================
+*.h5
+*.hdf5
+*.model
+*.joblib
+*.sav
+
+# ===============================
+# OS / IDE Specific
+# ===============================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
