@@ -72,3 +72,9 @@ print("Validation Accuracy:", accuracy)
 #Final Prediction on test set
 Y_test_pred = model.predict(X_test)
 
+#Prepare submission
+submission = pd.DataFrame({
+    'PassengerId': test['PassengerId'],
+    'Survived': Y_test_pred
+})
+submission.to_csv('submission.csv', index=False)
