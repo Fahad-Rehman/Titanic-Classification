@@ -75,6 +75,6 @@ Y_test_pred = model.predict(X_test)
 #Prepare submission
 submission = pd.DataFrame({
     'PassengerId': test['PassengerId'],
-    'Survived': Y_test_pred
+    'Survived': Y_test_pred.astype(int)
 })
 submission.to_csv('submission.csv', index=False)
