@@ -3,6 +3,8 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import LabelEncoder
+
 
 #Load Data
 train = pd.read_csv('train.csv')
@@ -47,18 +49,33 @@ assert full_data.isnull().sum().sum() == 0, "There are still missing values!"
 
 
 #Feature Engineering
-#drop unnecessary columns
-full_data.drop(['Name', 'Ticket', 'PassengerId'], axis=1, inplace=True)
+
 
 #convert categorical features to numerical
 full_data['Sex'] = full_data['Sex'].map({'male': 0, 'female': 1}).astype(int)
 full_data['Embarked'] = full_data['Embarked'].map({'S': 0, 'C': 1, 'Q': 2}).astype(int)
+
+#new features
+full_data['FamilySize'] = full_data['SibSp'] + full_data['Parch'] + 1
+full_data['IsAlone'] = (full_data['FamilySize'] == 1).astype(int)
+
+le = LabelEncoder()
+full_data['Title'] = full_data['Name'].str.extract(' ([A-Za-z]+)\.', expand=False)
+full_data['Title'] = le.fit_transform(full_data['Title'])
+
+#Binning Age
+full_data['AgeBin'] = pd.cut(full_data['Age'], bins=[0, 12, 20, 30, 40, 50, 60, 70, 80], labels=False)
+
+#dropping unnecessary columns
+full_data.drop(['PassengerId', 'Name', 'Ticket', 'SibSp', 'Parch', 'Age'], axis=1, inplace=True)
 
 #split back into train and test sets
 X = full_data.iloc[:len(Y), :]
 X_test = full_data.iloc[len(Y):, :]
 print("Processed training features shape:", X.shape)
 print("Processed test features shape:", X_test.shape)
+
+
 
 #split training data for validation
 X_train, X_val, Y_train, Y_val = train_test_split(X, Y, test_size=0.2, random_state=42)
@@ -77,4 +94,4 @@ submission = pd.DataFrame({
     'PassengerId': test['PassengerId'],
     'Survived': Y_test_pred.astype(int)
 })
-submission.to_csv('submission.csv', index=False)
+submission.to_csv('submission_updated.csv', index=False)
