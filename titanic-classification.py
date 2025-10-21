@@ -12,7 +12,6 @@ from sklearn.svm import SVC
 from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
 from catboost import CatBoostClassifier
-import numpy as np
 
 
 
